@@ -1,0 +1,59 @@
+/* kylegillespiemortgage.com — minimal, fast, machine-first */
+:root{
+  --ink:#1c2430;
+  --muted:#5b6673;
+  --accent:#0f5132;      /* deep green: finance, trust, Chicago flag-adjacent restraint */
+  --rule:#d9dee4;
+  --bg:#ffffff;
+  --wash:#f6f8f7;
+}
+*{box-sizing:border-box}
+html{font-size:17px}
+body{
+  margin:0;
+  color:var(--ink);
+  background:var(--bg);
+  font-family:Georgia,"Times New Roman",serif;
+  line-height:1.65;
+}
+header.site,footer.site{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+.wrap{max-width:46rem;margin:0 auto;padding:0 1.25rem}
+header.site{border-bottom:1px solid var(--rule);padding:.9rem 0}
+header.site .wrap{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.35rem}
+.brand{font-weight:700;color:var(--ink);text-decoration:none;letter-spacing:.01em}
+.brand .nmls{font-weight:400;color:var(--muted);font-size:.85rem;margin-left:.5rem}
+nav.site a{color:var(--muted);text-decoration:none;font-size:.9rem;margin-left:1rem}
+nav.site a:hover{color:var(--accent)}
+main{padding:2.2rem 0 3rem}
+h1{font-size:1.8rem;line-height:1.25;margin:0 0 1rem}
+h2{font-size:1.25rem;margin:2.2rem 0 .6rem;color:var(--ink)}
+h3{font-size:1.05rem;margin:1.6rem 0 .4rem}
+p{margin:.75rem 0}
+a{color:var(--accent)}
+.kicker{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem
+}
+.answer{
+  background:var(--wash);border-left:3px solid var(--accent);
+  padding:1rem 1.15rem;margin:1.25rem 0;border-radius:0 6px 6px 0;
+}
+.answer p{margin:.4rem 0}
+.byline{color:var(--muted);font-size:.92rem;font-style:italic}
+ul,ol{padding-left:1.3rem}
+li{margin:.35rem 0}
+dl.facts{display:grid;grid-template-columns:max-content 1fr;gap:.35rem 1rem;margin:1rem 0}
+dl.facts dt{font-weight:700;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:.9rem;color:var(--muted)}
+dl.facts dd{margin:0}
+.faq h3{margin-bottom:.2rem}
+.contact{background:var(--wash);border:1px solid var(--rule);border-radius:8px;padding:1.1rem 1.25rem;margin:2rem 0 1rem}
+.disclosure{color:var(--muted);font-size:.82rem;border-top:1px solid var(--rule);margin-top:2.5rem;padding-top:1rem}
+footer.site{border-top:1px solid var(--rule);padding:1.1rem 0 2rem;color:var(--muted);font-size:.85rem}
+footer.site a{color:var(--muted)}
+@media (max-width:560px){
+  html{font-size:16px}
+  dl.facts{grid-template-columns:1fr}
+  dl.facts dt{margin-top:.5rem}
+}

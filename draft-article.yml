@@ -1,0 +1,39 @@
+# Drafts the next article from the CLAUDE.md backlog as a pull request.
+# It NEVER publishes directly — every draft waits for human/compliance approval (PR merge).
+#
+# One-time setup:
+#   1. Repo Settings → Secrets and variables → Actions → add ANTHROPIC_API_KEY
+#   2. Adjust the cron below if you want a different cadence (default: 9am UTC on the
+#      1st and 15th of each month = two drafts/month).
+#   3. You can also trigger it manually: Actions tab → "Draft next article" → Run workflow.
+
+name: Draft next article
+
+on:
+  schedule:
+    - cron: "0 9 1,15 * *"   # 1st and 15th of each month, 9:00 UTC
+  workflow_dispatch: {}       # manual "Run workflow" button
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            Read CLAUDE.md in this repo. Write the next unwritten article from the
+            "Article backlog" section, following every rule in "Non-negotiable compliance
+            rules", "Voice and structure for articles", and the "When adding an article"
+            checklist. Use guides/chicago-non-warrantable-condo-financing.html as the exact
+            structural template. Update llms.txt, sitemap.xml, and index.html per the
+            checklist, and mark the article done in the CLAUDE.md backlog.
+            Create a new branch and open a pull request titled
+            "DRAFT for compliance review: <article title>". Do not push to main.
+          claude_args: "--max-turns 40"
