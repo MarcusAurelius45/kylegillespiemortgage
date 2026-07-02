@@ -1,18 +1,13 @@
 # Drafts the next article from the CLAUDE.md backlog as a pull request.
-# It NEVER publishes directly — every draft waits for human/compliance approval (PR merge).
-#
-# One-time setup:
-#   1. Repo Settings → Secrets and variables → Actions → add ANTHROPIC_API_KEY
-#   2. Adjust the cron below if you want a different cadence (default: 9am UTC on the
-#      1st and 15th of each month = two drafts/month).
-#   3. You can also trigger it manually: Actions tab → "Draft next article" → Run workflow.
+# Claude edits files; a deterministic step commits them and opens the PR.
+# Nothing publishes until a human merges.
 
 name: Draft next article
 
 on:
   schedule:
-    - cron: "0 9 1,15 * *"   # 1st and 15th of each month, 9:00 UTC
-  workflow_dispatch: {}       # manual "Run workflow" button
+    - cron: "0 9 1,15 * *"
+  workflow_dispatch: {}
 
 permissions:
   contents: write
@@ -30,11 +25,37 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           prompt: |
             Read CLAUDE.md in this repo. Write the next unwritten article from the
-            "Article backlog" section, following every rule in "Non-negotiable compliance
-            rules", "Voice and structure for articles", and the "When adding an article"
-            checklist. Use guides/chicago-non-warrantable-condo-financing.html as the exact
-            structural template. Update llms.txt, sitemap.xml, and index.html per the
-            checklist, and mark the article done in the CLAUDE.md backlog.
-            Create a new branch and open a pull request titled
-            "DRAFT for compliance review: <article title>". Do not push to main.
+            "Article backlog" section, following every rule in "Non-negotiable
+            compliance rules", "Voice and structure for articles", and the
+            "When adding an article" checklist. Use
+            guides/chicago-non-warrantable-condo-financing.html as the exact
+            structural template. Update llms.txt, sitemap.xml, and index.html per
+            the checklist, and mark the article done in the CLAUDE.md backlog.
+            Also write the article's title as a single plain-text line into a new
+            file named DRAFT_TITLE.txt in the repo root.
+            IMPORTANT: Only edit files in the working directory. Do NOT run any
+            git commands, do NOT create branches, do NOT attempt to open a pull
+            request. The workflow handles all of that after you finish.
           claude_args: "--max-turns 40"
+
+      - name: Read draft title
+        id: meta
+        run: |
+          if [ -f DRAFT_TITLE.txt ]; then
+            echo "title=$(head -n 1 DRAFT_TITLE.txt)" >> "$GITHUB_OUTPUT"
+            rm DRAFT_TITLE.txt
+          else
+            echo "title=New article draft" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Open pull request with the draft
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "Draft article for compliance review"
+          title: "DRAFT for compliance review: ${{ steps.meta.outputs.title }}"
+          body: |
+            Automated draft from the article backlog in CLAUDE.md.
+            Review, send to OriginPoint compliance, then merge to publish.
+          branch: draft/article
+          branch-suffix: timestamp
+          delete-branch: true
