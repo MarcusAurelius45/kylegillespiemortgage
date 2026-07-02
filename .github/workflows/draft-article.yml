@@ -1,6 +1,5 @@
 # Drafts the next article from the CLAUDE.md backlog as a pull request.
 # Claude edits files; a deterministic step commits them and opens the PR.
-# Nothing publishes until a human merges.
 
 name: Draft next article
 
@@ -29,14 +28,22 @@ jobs:
             compliance rules", "Voice and structure for articles", and the
             "When adding an article" checklist. Use
             guides/chicago-non-warrantable-condo-financing.html as the exact
-            structural template. Update llms.txt, sitemap.xml, and index.html per
-            the checklist, and mark the article done in the CLAUDE.md backlog.
+            structural template. Create the new article file inside the guides/
+            directory. Update llms.txt, sitemap.xml, and index.html per the
+            checklist, and mark the article done in the CLAUDE.md backlog.
             Also write the article's title as a single plain-text line into a new
             file named DRAFT_TITLE.txt in the repo root.
-            IMPORTANT: Only edit files in the working directory. Do NOT run any
-            git commands, do NOT create branches, do NOT attempt to open a pull
-            request. The workflow handles all of that after you finish.
-          claude_args: "--max-turns 40"
+            IMPORTANT: Only create and edit files in the current working
+            directory. Do NOT run any git commands, do NOT create branches, do
+            NOT open a pull request. The workflow handles all of that.
+          claude_args: '--max-turns 40 --allowedTools "Read,Write,Edit,MultiEdit,Glob,Grep,LS"'
+
+      - name: Show what Claude changed (diagnostic)
+        run: |
+          echo "--- git status ---"
+          git status --porcelain
+          echo "--- guides/ ---"
+          ls -la guides/
 
       - name: Read draft title
         id: meta
