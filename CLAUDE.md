@@ -46,7 +46,7 @@ Every page, every draft, always:
 ## Article backlog (write in this order)
 
 1. ~~Financing a non-warrantable condo in Chicago~~ (done)
-2. Chicago condo mortgages: why your loan got denied on the building, not you
+2. ~~Chicago condo mortgages: why your loan got denied on the building, not you~~ (done)
 3. Physician loans in Chicago: how residents at Northwestern, Rush & UChicago buy with little down
 4. Jumbo loan limits in Chicago 2026: what counts as jumbo on the North Side
 5. Buying a $1.5M+ home in Lincoln Park or Winnetka: jumbo financing step by step
