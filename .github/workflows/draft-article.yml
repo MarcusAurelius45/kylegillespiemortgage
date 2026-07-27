@@ -1,5 +1,8 @@
+yaml
 # Drafts the next article from the CLAUDE.md backlog as a pull request.
-# Claude edits files; a deterministic step commits them and opens the PR.
+# Safeguards: (1) skips the run if an unreviewed draft PR is already open,
+# (2) auto-blocks drafts containing compliance trigger language.
+# Nothing publishes until a human merges.
 
 name: Draft next article
 
@@ -19,7 +22,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: anthropics/claude-code-action@v1
+      - name: Skip if an unreviewed draft is already open
+        id: guard
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          open=$(gh pr list --state open --json title --jq '[.[] | select(.title | startswith("DRAFT for compliance review"))] | length')
+          echo "open_drafts=$open" >> "$GITHUB_OUTPUT"
+          if [ "$open" != "0" ]; then
+            echo "A draft PR is already open and awaiting review - skipping this run to avoid duplicates."
+          fi
+
+      - name: Draft the article
+        if: steps.guard.outputs.open_drafts == '0'
+        uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           prompt: |
@@ -38,15 +54,23 @@ jobs:
             NOT open a pull request. The workflow handles all of that.
           claude_args: '--max-turns 40 --allowedTools "Read,Write,Edit,MultiEdit,Glob,Grep,LS"'
 
-      - name: Show what Claude changed (diagnostic)
+      - name: Compliance screen - block trigger language
+        if: steps.guard.outputs.open_drafts == '0'
         run: |
-          echo "--- git status ---"
-          git status --porcelain
-          echo "--- guides/ ---"
-          ls -la guides/
+          changed=$(git status --porcelain | awk '{print $2}' | grep -E '\.(html|md|txt)$' || true)
+          if [ -z "$changed" ]; then echo "No changed files to screen."; exit 0; fi
+          pattern='\bAPR\b|rates? as low as|lowest rate|best rate|best lender|best deal|lock in [0-9]|[0-9](\.[0-9]+)? ?% ?(APR|interest|rate)|(rate|APR) of [0-9]|guaranteed? (approval|savings|qualification)|no.?cost refinance|no closing costs|free money|#1 |number one|risk.?free|act now|limited time|apply instantly'
+          hits=$(grep -inE "$pattern" $changed || true)
+          if [ -n "$hits" ]; then
+            echo "$hits"
+            echo "::error::Compliance screen flagged the language above. Draft blocked - no PR was opened. Fix CLAUDE.md guidance or rerun."
+            exit 1
+          fi
+          echo "Compliance screen passed - no trigger language found."
 
       - name: Read draft title
         id: meta
+        if: steps.guard.outputs.open_drafts == '0'
         run: |
           if [ -f DRAFT_TITLE.txt ]; then
             echo "title=$(head -n 1 DRAFT_TITLE.txt)" >> "$GITHUB_OUTPUT"
@@ -56,13 +80,15 @@ jobs:
           fi
 
       - name: Open pull request with the draft
+        if: steps.guard.outputs.open_drafts == '0'
         uses: peter-evans/create-pull-request@v6
         with:
           commit-message: "Draft article for compliance review"
           title: "DRAFT for compliance review: ${{ steps.meta.outputs.title }}"
           body: |
             Automated draft from the article backlog in CLAUDE.md.
-            Review, send to OriginPoint compliance, then merge to publish.
+            Passed the automated compliance language screen.
+            Review, confirm compliance sign-off, then merge to publish.
           branch: draft/article
           branch-suffix: timestamp
           delete-branch: true
