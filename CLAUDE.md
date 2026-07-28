@@ -21,6 +21,7 @@ Every page, every draft, always:
    housing stock and process, never demographics.
 6. All new articles are DRAFTS pending OriginPoint compliance review. Open a PR; never push
    articles directly to main.
+7. Physician/doctor loans: NEVER mention or imply 100% financing or zero-down options. Kyle's physician offering is 95% LTV maximum; frame       physician-loan content as honest comparison (when the product helps vs. when a conventional loan with 5%+ down is better), never as a         competitive-LTV pitch.
 
 ## Voice and structure for articles
 
@@ -47,7 +48,7 @@ Every page, every draft, always:
 
 1. ~~Financing a non-warrantable condo in Chicago~~ (done)
 2. ~~Chicago condo mortgages: why your loan got denied on the building, not you~~ (done)
-3. Physician loans in Chicago: how residents at Northwestern, Rush & UChicago buy with little down
+3. Do you actually need a physician loan? A Chicago lender's honest math on when 5%+ down beats the doctor loan
 4. Jumbo loan limits in Chicago 2026: what counts as jumbo on the North Side
 5. Buying a $1.5M+ home in Lincoln Park or Winnetka: jumbo financing step by step
 6. Bank-statement loans for Chicago business owners: qualifying without W-2s
