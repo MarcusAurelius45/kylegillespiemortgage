@@ -22,6 +22,7 @@ Every page, every draft, always:
 6. All new articles are DRAFTS pending OriginPoint compliance review. Open a PR; never push
    articles directly to main.
 7. Physician/doctor loans: NEVER mention or imply 100% financing or zero-down options. Kyle's physician offering is 95% LTV maximum; frame       physician-loan content as honest comparison (when the product helps vs. when a conventional loan with 5%+ down is better), never as a         competitive-LTV pitch.
+8. NEVER use "same day approval" or "same day mortgage" language anywhere; "fast approvals" is acceptable. Every page's disclosure paragraph must copy verbatim the current approved legal text at the bottom of index.html — including the California (OriginPoint Mortgage LLC) and New York (not authorized by NYSDFS; no NY applications) language. Do not write a shortened disclosure.
 
 ## Voice and structure for articles
 
