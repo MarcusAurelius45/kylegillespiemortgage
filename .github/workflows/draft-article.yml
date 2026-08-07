@@ -1,4 +1,4 @@
-yaml
+
 # Drafts the next article from the CLAUDE.md backlog as a pull request.
 # Safeguards: (1) skips the run if an unreviewed draft PR is already open,
 # (2) auto-blocks drafts containing compliance trigger language.
