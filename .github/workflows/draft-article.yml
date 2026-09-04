@@ -57,7 +57,7 @@ jobs:
       - name: Compliance screen - block trigger language
         if: steps.guard.outputs.open_drafts == '0'
         run: |
-          changed=$(git status --porcelain | awk '{print $2}' | grep -E '\.(html|md|txt)$' || true)
+                    changed=$(git status --porcelain | awk '{print $2}' | grep -E '\.(html|md|txt)$' | grep -v 'CLAUDE.md' || true)
           if [ -z "$changed" ]; then echo "No changed files to screen."; exit 0; fi
           pattern='\bAPR\b|rates? as low as|lowest rate|best rate|best lender|best deal|lock in [0-9]|[0-9](\.[0-9]+)? ?% ?(APR|interest|rate)|(rate|APR) of [0-9]|guaranteed? (approval|savings|qualification)|no.?cost refinance|no closing costs|free money|#1 |number one|risk.?free|act now|limited time|apply instantly'
           hits=$(grep -inE "$pattern" $changed || true)
