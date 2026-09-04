@@ -23,6 +23,7 @@ Every page, every draft, always:
    articles directly to main.
 7. Physician/doctor loans: NEVER mention or imply 100% financing or zero-down options. Kyle's physician offering is 95% LTV maximum; frame       physician-loan content as honest comparison (when the product helps vs. when a conventional loan with 5%+ down is better), never as a         competitive-LTV pitch.
 8. NEVER use "same day approval" or "same day mortgage" language anywhere; "fast approvals" is acceptable. Every page's disclosure paragraph must copy verbatim the current approved legal text at the bottom of index.html — including the California (OriginPoint Mortgage LLC) and New York (not authorized by NYSDFS; no NY applications) language. Do not write a shortened disclosure.
+9. The automated compliance screen hard-blocks drafts containing these exact strings — never use them, even in a sentence arguing against them: "APR" (write "annual percentage rate" or "all-in cost" instead), "best rate", "lowest rate", "best lender", "best deal", "rates as low as", "guaranteed approval", "no closing costs", "no-cost refinance", "free money", "#1", "number one", "risk-free", "act now", "limited time", "apply instantly". Never write a number immediately followed by "% APR", "% interest", or "% rate".
 
 ## Voice and structure for articles
 
@@ -49,7 +50,6 @@ Every page, every draft, always:
 
 1. ~~Financing a non-warrantable condo in Chicago~~ (done)
 2. ~~Chicago condo mortgages: why your loan got denied on the building, not you~~ (done)
-3. Do you actually need a physician loan? A Chicago lender's honest math on when 5%+ down beats the doctor loan
 4. Jumbo loan limits in Chicago 2026: what counts as jumbo on the North Side
 5. Buying a $1.5M+ home in Lincoln Park or Winnetka: jumbo financing step by step
 6. Bank-statement loans for Chicago business owners: qualifying without W-2s
