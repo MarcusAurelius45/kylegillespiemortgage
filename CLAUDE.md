@@ -50,7 +50,7 @@ Every page, every draft, always:
 
 1. ~~Financing a non-warrantable condo in Chicago~~ (done)
 2. ~~Chicago condo mortgages: why your loan got denied on the building, not you~~ (done)
-4. Jumbo loan limits in Chicago 2026: what counts as jumbo on the North Side
+4. ~~Jumbo loan limits in Chicago 2026: what counts as jumbo on the North Side~~ (done)
 5. Buying a $1.5M+ home in Lincoln Park or Winnetka: jumbo financing step by step
 6. Bank-statement loans for Chicago business owners: qualifying without W-2s
 7. Self-employed and buying in Chicago: how lenders read your tax returns
