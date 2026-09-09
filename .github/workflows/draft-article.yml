@@ -8,7 +8,7 @@ name: Draft next article
 
 on:
   schedule:
-    - cron: "0 9 1,15 * *"
+    - cron: "0 9 * * 1"  
   workflow_dispatch: {}
 
 permissions:
