@@ -34,6 +34,7 @@ Every page, every draft, always:
 - End with an FAQ section (5–7 Q&As) AND matching FAQPage JSON-LD in the <head>.
 - Include Article JSON-LD with author @id "https://kylegillespiemortgage.com/#kyle-gillespie".
 - Byline: "Kyle Gillespie, SVP of Mortgage Lending at OriginPoint (a Rate company), NMLS #223778..."
+- Directly below the byline, add a visible date line: <p class="byline">Published [Month Year] · Last reviewed [Month Year]</p> — using the current month for both on a new article. Keep the JSON-LD datePublished and dateModified in sync with it.
 - Contact block + full disclosure paragraph at the bottom (copy pattern from existing guide).
 - Use the existing page template: copy guides/chicago-non-warrantable-condo-financing.html
   structure exactly (head metadata, header, footer, style.css link, canonical URL).
