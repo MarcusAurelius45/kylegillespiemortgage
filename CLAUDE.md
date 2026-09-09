@@ -38,6 +38,7 @@ Every page, every draft, always:
 - Contact block + full disclosure paragraph at the bottom (copy pattern from existing guide).
 - Use the existing page template: copy guides/chicago-non-warrantable-condo-financing.html
   structure exactly (head metadata, header, footer, style.css link, canonical URL).
+- Never encourage or coach the reader to shop or compare multiple lenders. Answer questions honestly and factually, but do not add rate-shopping tips, "get several quotes" advice, or reassurance that shopping around is consequence-free.
 
 ## When adding an article (checklist)
 
