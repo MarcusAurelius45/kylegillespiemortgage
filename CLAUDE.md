@@ -23,7 +23,9 @@ Every page, every draft, always:
    articles directly to main.
 7. Physician/doctor loans: NEVER mention or imply 100% financing or zero-down options. Kyle's physician offering is 95% LTV maximum; frame       physician-loan content as honest comparison (when the product helps vs. when a conventional loan with 5%+ down is better), never as a         competitive-LTV pitch.
 8. NEVER use "same day approval" or "same day mortgage" language anywhere; "fast approvals" is acceptable. Every page's disclosure paragraph must copy verbatim the current approved legal text at the bottom of index.html — including the California (OriginPoint Mortgage LLC) and New York (not authorized by NYSDFS; no NY applications) language. Do not write a shortened disclosure.
-9. The automated compliance screen hard-blocks drafts containing these exact strings — never use them, even in a sentence arguing against them: "APR" (write "annual percentage rate" or "all-in cost" instead), "best rate", "lowest rate", "best lender", "best deal", "rates as low as", "guaranteed approval", "no closing costs", "no-cost refinance", "free money", "#1", "number one", "risk-free", "act now", "limited time", "apply instantly". Never write a number immediately followed by "% APR", "% interest", or "% rate".
+9. URLS: Cloudflare redirects .html addresses. Every link, canonical tag, and JSON-LD "url" MUST use clean URLs with NO .html extension — e.g. https://kylegillespiemortgage.com/guides/<slug> (the file on disk is still guides/<slug>.html). Never write a .html link anywhere.
+10. Every article includes the standard CTA block (div class="cta") directly after the answer box — copy it exactly from an existing guide. It links to KyleGillespie.com, the phone number, and /reviews.
+11. The automated compliance screen hard-blocks drafts containing these exact strings — never use them, even in a sentence arguing against them: "APR" (write "annual percentage rate" or "all-in cost" instead), "best rate", "lowest rate", "best lender", "best deal", "rates as low as", "guaranteed approval", "no closing costs", "no-cost refinance", "free money", "#1", "number one", "risk-free", "act now", "limited time", "apply instantly". Never write a number immediately followed by "% APR", "% interest", or "% rate".
 
 ## Voice and structure for articles
 
@@ -43,16 +45,19 @@ Every page, every draft, always:
 ## When adding an article (checklist)
 
 1. Create guides/<slug>.html following the template.
-2. Add the article to llms.txt under ## Guides with a one-line description.
-3. Add a <url> entry to sitemap.xml with today's lastmod.
-4. Add a link in the Guides list on index.html.
-5. Open a PR titled "DRAFT for compliance review: <article title>".
+2. Add the article to llms.txt under ## Guides with a one-line description (clean URL, no .html).
+3. Add a <url> entry to sitemap.xml with today's lastmod (clean URL, no .html).
+4. Add a link in the Guides list on index.html (clean URL, no .html).
+5. Add a <li> entry to guides/index.html with title, date, and one-line description.
+6. Open a PR titled "DRAFT for compliance review: <article title>".
 
 ## Article backlog (write in this order)
 
+Cadence: the workflow runs weekly (Mondays). Neighborhood × niche × process-problem titles outperform city-level titles — prefer them.
+
 1. ~~Financing a non-warrantable condo in Chicago~~ (done)
 2. ~~Chicago condo mortgages: why your loan got denied on the building, not you~~ (done)
-4. Jumbo loan limits in Chicago 2026: what counts as jumbo on the North Side
+4. ~~Jumbo loan limits in Chicago 2026: what counts as jumbo on the North Side~~ (done)
 5. Buying a $1.5M+ home in Lincoln Park or Winnetka: jumbo financing step by step
 6. Bank-statement loans for Chicago business owners: qualifying without W-2s
 7. Self-employed and buying in Chicago: how lenders read your tax returns
@@ -60,7 +65,15 @@ Every page, every draft, always:
 9. First-time buyer in Wrigleyville: down payment, taxes, and what to budget
 10. Foreign national mortgages in Chicago: buying without a Social Security number
 
-After #10, propose new hyper-specific Chicago topics in the same spirit (specific niche ×
+12. Non-warrantable condos in Lakeview and Lincoln Park: the buildings, the triggers, and the financing
+13. Jumbo financing in Lincoln Park, Bucktown, and North Center: what $1M+ buyers should know
+14. Buying a 2-flat in Logan Square or Avondale: house-hacking financing explained
+15. Condo financing in River North and Streeterville: high-rise buildings and warrantability
+16. Self-employed buyers in Wicker Park and West Town: bank-statement loans, step by step
+17. Refinancing a Chicago condo: the building review that surprises owners
+18. First-time buyer in Andersonville and Edgewater: what to budget beyond the down payment
+
+After #18, propose new hyper-specific Chicago topics in the same spirit (specific niche ×
 specific neighborhood × specific process problem) as a PR comment for Kyle to approve.
 
 ## Canonical facts (single source of truth — do not vary)
