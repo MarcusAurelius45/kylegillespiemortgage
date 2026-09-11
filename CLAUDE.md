@@ -22,13 +22,14 @@ Every page, every draft, always:
 6. All new articles are DRAFTS pending OriginPoint compliance review. Open a PR; never push
    articles directly to main.
 7. Physician/doctor loans: NEVER mention or imply 100% financing or zero-down options. Kyle's physician offering is 95% LTV maximum; frame       physician-loan content as honest comparison (when the product helps vs. when a conventional loan with 5%+ down is better), never as a         competitive-LTV pitch.
-8. NEVER use "same day approval" or "same day mortgage" language anywhere; "fast approvals" is acceptable. Every page's disclosure paragraph must copy verbatim the current approved legal text at the bottom of index.html — including the California (OriginPoint Mortgage LLC) and New York (not authorized by NYSDFS; no NY applications) language. Do not write a shortened disclosure.
+8. NEVER use "same day approval" or "same day mortgage" language anywhere; "fast approvals" is acceptable. Every page must end with ALL THREE approved disclosure paragraphs, copied verbatim from the bottom of index.html: (a) the "Information provided is for educational purposes only... conduct additional research" paragraph, (b) the "*OriginPoint has no affiliation with the US Department of Housing and Urban Development..." paragraph, and (c) the "Equal Housing Lender..." paragraph including the California and New York language. Do not write a shortened disclosure.
 9. URLS: Cloudflare redirects .html addresses. Every link, canonical tag, and JSON-LD "url" MUST use clean URLs with NO .html extension — e.g. https://kylegillespiemortgage.com/guides/<slug> (the file on disk is still guides/<slug>.html). Never write a .html link anywhere.
 10. Every article includes the standard CTA block (div class="cta") directly after the answer box — copy it exactly from an existing guide. It links to KyleGillespie.com, the phone number, and /reviews.
 11. The automated compliance screen hard-blocks drafts containing these exact strings — never use them, even in a sentence arguing against them: "APR" (write "annual percentage rate" or "all-in cost" instead), "best rate", "lowest rate", "best lender", "best deal", "rates as low as", "guaranteed approval", "no closing costs", "no-cost refinance", "free money", "#1", "number one", "risk-free", "act now", "limited time", "apply instantly". Never write a number immediately followed by "% APR", "% interest", or "% rate".
 
 ## Voice and structure for articles
 
+- Compliance house style: do NOT use em dashes (—) anywhere in article text. Use commas, semicolons, periods, or parentheses instead. Compliance rewrites every em dash on review.
 - Lead with the answer: first block is a 3–5 sentence direct answer in a `div.answer`.
 - Question-shaped H2/H3s matching how buyers actually phrase queries to AI assistants.
 - Relentlessly Chicago-specific: neighborhoods, building types, local institutions, local
