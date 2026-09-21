@@ -42,9 +42,12 @@ jobs:
             Read CLAUDE.md in this repo. Write the next unwritten article from the
             "Article backlog" section, following every rule in "Non-negotiable
             compliance rules", "Voice and structure for articles", and the
-            "When adding an article" checklist. Use
-            guides/chicago-non-warrantable-condo-financing.html as the exact
-            structural template. Create the new article file inside the guides/
+            "When adding an article" checklist. Hard rules: never use the word "can";
+            no em dashes; 900 to 1,200 words of article text; a Sources section;
+            the approved legal block copied verbatim from CLAUDE.md. Use
+            guides/chicago-condo-rules-august-2026.html as the exact
+            structural template (byline, date line, body, FAQ, contact block,
+            Sources section, then the approved legal block; no CTA block). Create the new article file inside the guides/
             directory. Update llms.txt, sitemap.xml, and index.html per the
             checklist, and mark the article done in the CLAUDE.md backlog.
             Also write the article's title as a single plain-text line into a new
@@ -67,6 +70,28 @@ jobs:
             exit 1
           fi
           echo "Compliance screen passed - no trigger language found."
+
+      - name: Hard rules for new article files
+        if: steps.guard.outputs.open_drafts == '0'
+        run: |
+          new=$(git status --porcelain guides/ | awk '$1=="??" {print $2}' | grep '\.html$' || true)
+          if [ -z "$new" ]; then echo "::error::No new article file found in guides/."; exit 1; fi
+          fail=0
+          for f in $new; do
+            echo "Checking $f"
+            body=$(python3 -c "import re,sys,html; s=open(sys.argv[1]).read(); m=re.search(r'</h1>(.*?)<h2>Sources</h2>',s,re.S); t=m.group(1) if m else ''; t=re.sub(r'<script.*?</script>','',t,flags=re.S); t=re.sub(r'<[^>]+>',' ',t); print(html.unescape(t))" "$f")
+            if ! grep -q '<h2>Sources</h2>' "$f"; then echo "::error::$f is missing the <h2>Sources</h2> section."; fail=1; fi
+            for must in "Equal Housing Lender." "All information provided in this publication is for informational and educational purposes only" "No mortgage loan applications for properties located in New York will be accepted through this site" "OriginPoint LLC, NMLS #2185899. Operating in the state of California as OriginPoint Mortgage LLC"; do
+              grep -qF "$must" "$f" || { echo "::error::$f is missing approved legal block text: $must"; fail=1; }
+            done
+            hits=$(echo "$body" | grep -noiE "\bcan\b|\bcan't\b|\bcannot\b" || true)
+            if [ -n "$hits" ]; then echo "$hits"; echo "::error::$f uses the word 'can' (banned by compliance)."; fail=1; fi
+            if echo "$body" | grep -q '—'; then echo "::error::$f contains an em dash."; fail=1; fi
+            words=$(echo "$body" | wc -w)
+            echo "Article text word count: $words"
+            if [ "$words" -gt 1300 ]; then echo "::error::$f is $words words; hard cap is 1300."; fail=1; fi
+          done
+          exit $fail
 
       - name: Read draft title
         id: meta
