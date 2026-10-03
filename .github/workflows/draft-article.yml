@@ -1,6 +1,6 @@
 
 # Drafts the next article from the CLAUDE.md backlog as a pull request.
-# Safeguards: (1) skips the run if an unreviewed draft PR is already open,
+# Safeguards: (1) FAILS LOUDLY (email) if an unreviewed draft PR is already open,
 # (2) auto-blocks drafts containing compliance trigger language.
 # Nothing publishes until a human merges.
 
@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Skip if an unreviewed draft is already open
+      - name: Stop loudly if an unreviewed draft is already open
         id: guard
         env:
           GH_TOKEN: ${{ github.token }}
@@ -30,7 +30,10 @@ jobs:
           open=$(gh pr list --state open --json title --jq '[.[] | select(.title | startswith("DRAFT for compliance review"))] | length')
           echo "open_drafts=$open" >> "$GITHUB_OUTPUT"
           if [ "$open" != "0" ]; then
-            echo "A draft PR is already open and awaiting review - skipping this run to avoid duplicates."
+            echo "A draft is still waiting for review, so no new article was written this week:"
+            gh pr list --state open --json number,title,url --jq '.[] | select(.title | startswith("DRAFT for compliance review")) | "  PR #\(.number): \(.title)\n  \(.url)"'
+            echo "::error::DRAFT WAITING FOR REVIEW. No new article was written. Merge the open draft (if compliance approved it) or close it (to discard it), then the next Monday run will draft the next article. Open drafts: https://github.com/${GITHUB_REPOSITORY}/pulls"
+            exit 1
           fi
 
       - name: Draft the article
