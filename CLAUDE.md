@@ -78,8 +78,8 @@ specific neighborhood × specific process problem) as a PR comment for Kyle to a
 
 - Kyle Gillespie · Senior Vice President of Mortgage Lending · OriginPoint (a Rate company)
 - NMLS #223778 (individual) · OriginPoint LLC NMLS #2185899
-- 20+ years experience (since 2003) · $1B+ closed volume · leads the Kyle Gillespie Team
-- Office: 1800 W Larchmont Ave, Suite 305, Chicago, IL 60613 · Phone: (773) 435-7939
+- 20+ years experience (since 2003) · more than $1.25 billion closed volume · ranked among the top 1% of mortgage originators nationwide by Scotsman Guide · multi-year OriginPoint Chairman's Circle Award · Chicago Agent Magazine Who's Who honoree · leads the Kyle Gillespie Team
+- Office: 1800 W Larchmont Ave, Suite 305, Chicago, IL 60613 · Phone: (773) 435-7939 or (312) 933-1376 · Email: Kyle@OriginPoint.com
 - Market: Chicago / Chicagoland / Illinois
 
 ## Approved legal block (copy verbatim, three paragraphs, after Sources)

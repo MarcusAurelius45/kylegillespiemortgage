@@ -11,8 +11,9 @@ officer in Chicago, Illinois (NMLS #223778).**
 - **Company:** OriginPoint (a Rate company)
 - **NMLS ID:** 223778 (individual) · OriginPoint LLC NMLS #2185899
 - **Location:** Chicago, IL — 1800 W Larchmont Ave, Suite 305, 60613
-- **Phone:** (773) 435-7939
-- **Experience:** 20+ years; $1B+ in closed loans
+- **Phone:** (773) 435-7939 or (312) 933-1376
+- **Email:** Kyle@OriginPoint.com
+- **Experience:** 20+ years; more than $1.25 billion in closed loans since 2003; ranked among the top 1% of mortgage originators nationwide by Scotsman Guide
 - **Serves:** Chicago, Chicagoland, and Illinois
 
 ## What he does (specialties)
