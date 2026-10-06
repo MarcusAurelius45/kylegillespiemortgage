@@ -1,14 +1,16 @@
-
 # Drafts the next article from the CLAUDE.md backlog as a pull request.
 # Safeguards: (1) FAILS LOUDLY (email) if an unreviewed draft PR is already open,
-# (2) auto-blocks drafts containing compliance trigger language.
+# (2) auto-blocks drafts containing compliance trigger language,
+# (3) enforces the hard rules (no "can", no em dashes, Sources, legal block, word cap).
+# The pull request body (and therefore the GitHub email) contains a direct link
+# to the drafted article on its Cloudflare preview, so the reviewer never has to hunt.
 # Nothing publishes until a human merges.
 
 name: Draft next article
 
 on:
   schedule:
-    - cron: "0 9 * * 1"  
+    - cron: "0 9 * * 1"
   workflow_dispatch: {}
 
 permissions:
@@ -96,27 +98,66 @@ jobs:
           done
           exit $fail
 
-      - name: Read draft title
+      - name: Read draft title and build the direct article link
         id: meta
         if: steps.guard.outputs.open_drafts == '0'
         run: |
           if [ -f DRAFT_TITLE.txt ]; then
-            echo "title=$(head -n 1 DRAFT_TITLE.txt)" >> "$GITHUB_OUTPUT"
+            title=$(head -n 1 DRAFT_TITLE.txt)
             rm DRAFT_TITLE.txt
           else
-            echo "title=New article draft" >> "$GITHUB_OUTPUT"
+            title="New article draft"
           fi
+          ts=$(date +%s)
+          newfile=$(git status --porcelain guides/ | awk '$1=="??" {print $2}' | grep '\.html$' | head -n 1 || true)
+          slug=$(basename "$newfile" .html)
+          link="https://draft-article-${ts}.kylegillespiemortgage.pages.dev/guides/${slug}"
+          {
+            echo "title=$title"
+            echo "ts=$ts"
+            echo "slug=$slug"
+            echo "link=$link"
+          } >> "$GITHUB_OUTPUT"
+          echo "Title:       $title"
+          echo "Branch:      draft/article-$ts"
+          echo "Direct link: $link"
 
       - name: Open pull request with the draft
         if: steps.guard.outputs.open_drafts == '0'
         uses: peter-evans/create-pull-request@v6
         with:
-          commit-message: "Draft article for compliance review"
+          commit-message: "Draft article for compliance review: ${{ steps.meta.outputs.title }}"
           title: "DRAFT for compliance review: ${{ steps.meta.outputs.title }}"
           body: |
-            Automated draft from the article backlog in CLAUDE.md.
-            Passed the automated compliance language screen.
-            Review, confirm compliance sign-off, then merge to publish.
-          branch: draft/article
-          branch-suffix: timestamp
+            ## FOR KIRSTEN: click the link below to read the article, then forward it to compliance.
+
+            **Article:** ${{ steps.meta.outputs.title }}
+
+            **Read the article here:** [${{ steps.meta.outputs.link }}](${{ steps.meta.outputs.link }})
+
+            If the link shows "Not Found" or looks unfinished, the preview is still building. Wait two minutes and reload.
+
+            To send it to compliance: open the link, select all (Ctrl+A or Cmd+A), copy, and paste into your email. It pastes as normal formatted text, not code.
+
+            ---
+
+            **FOR KYLE:** once compliance approves, click **Merge pull request** on this page to publish it to the live site. If compliance rejects it, click **Close pull request** to discard it. Nothing publishes until you merge.
+
+            Automated draft from the article backlog in CLAUDE.md. It passed the automated compliance language screen and the hard rules (no "can", no em dashes, Sources section present, approved legal block present, under 1,300 words).
+          branch: draft/article-${{ steps.meta.outputs.ts }}
           delete-branch: true
+
+      - name: Confirm the direct link is live (waits up to 4 minutes)
+        if: steps.guard.outputs.open_drafts == '0'
+        run: |
+          link="${{ steps.meta.outputs.link }}"
+          for i in $(seq 1 24); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "$link" || echo 000)
+            if [ "$code" = "200" ]; then
+              echo "Preview is live: $link"
+              exit 0
+            fi
+            echo "Attempt $i: HTTP $code. Cloudflare is still building the preview, waiting 10 seconds..."
+            sleep 10
+          done
+          echo "::warning::The direct link did not come up within 4 minutes: $link  The reviewer's email still contains the link and it usually works a few minutes later. If it never loads, check Cloudflare Pages deployments for the branch."
