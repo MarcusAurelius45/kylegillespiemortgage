@@ -48,12 +48,14 @@ jobs:
             "Article backlog" section, following every rule in "Non-negotiable
             compliance rules", "Voice and structure for articles", and the
             "When adding an article" checklist. Hard rules: never use the word "can";
-            no em dashes; 900 to 1,200 words of article text; a Sources section;
-            the approved legal block copied verbatim from CLAUDE.md. Use
-            guides/chicago-condo-rules-august-2026.html as the exact
-            structural template (byline, date line, body, FAQ, contact block,
-            Sources section, then the approved legal block; no CTA block). Create the new article file inside the guides/
-            directory. Update llms.txt, sitemap.xml, and index.html per the
+            no em dashes; 850 to 1,100 words of article text; a Sources section;
+            both approved legal blocks (Block A and Block B) copied verbatim from
+            CLAUDE.md in the positions it specifies. Use the file named under
+            "STRUCTURAL TEMPLATE" in CLAUDE.md as the exact structural template
+            (head metadata, header, byline, date line, body, Frequently Asked
+            Questions, legal Block A, contact block, Sources section, legal
+            Block B, footer; no CTA block). Create the new article file inside the guides/
+            directory. Update llms.txt, sitemap.xml, index.html, and guides/index.html per the
             checklist, and mark the article done in the CLAUDE.md backlog.
             Also write the article's title as a single plain-text line into a new
             file named DRAFT_TITLE.txt in the repo root.
