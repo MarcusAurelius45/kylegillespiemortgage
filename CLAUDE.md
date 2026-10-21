@@ -51,7 +51,9 @@ Every article, every draft, always:
 
 Already published outside this backlog (do not rewrite): "Fannie Mae's August 2026 Condo Rules: What Changed for Chicago Buyers, Sellers, and Boards" (guides/chicago-condo-rules-august-2026.html). Link to it from any future condo-related article. Link to guides/chicago-jumbo-loan-limits-north-side.html from any future jumbo article. Internal links use the full clean URL (https://kylegillespiemortgage.com/guides/<slug>).
 
-Cadence: the workflow runs weekly (Mondays). Neighborhood × niche × process-problem titles outperform city-level titles — prefer them.
+Cadence: the workflow runs weekly (Mondays). Neighborhood × niche × process-problem titles outperform city-level titles; prefer them.
+
+PRIORITY ORDER (overrides the numbering below; set October 2026 from Bing AI citation data, where condo articles earn the citations): once #6 is done, write the next unwritten article in this order: #15, #12, #17, #19, then #7, #8, #9, #10, #13, #14, #16, #18. Link every condo article to guides/chicago-condo-rules-august-2026 and guides/chicago-non-warrantable-condo-financing.
 
 1. ~~Financing a non-warrantable condo in Chicago~~ (done)
 2. ~~Chicago condo mortgages: why your loan got denied on the building, not you~~ (done)
@@ -70,6 +72,7 @@ Cadence: the workflow runs weekly (Mondays). Neighborhood × niche × process-pr
 16. Self-employed buyers in Wicker Park and West Town: bank-statement loans, step by step
 17. Refinancing a Chicago condo: the building review that surprises owners
 18. First-time buyer in Andersonville and Edgewater: what to budget beyond the down payment
+19. Chicago condo associations and the January 4, 2027 reserve change: what buyers, sellers, and boards should check before the deadline (timely; cite the dated Fannie Mae Lender Letter and Freddie Mac bulletin in Sources and confirm the effective date there; keep figures tied to that source)
 
 After #18, propose new hyper-specific Chicago topics in the same spirit (specific niche ×
 specific neighborhood × specific process problem) as a PR comment for Kyle to approve.
