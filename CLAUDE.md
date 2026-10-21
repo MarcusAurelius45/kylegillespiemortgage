@@ -57,7 +57,7 @@ Cadence: the workflow runs weekly (Mondays). Neighborhood × niche × process-pr
 2. ~~Chicago condo mortgages: why your loan got denied on the building, not you~~ (done)
 4. ~~Jumbo loan limits in Chicago 2026: what counts as jumbo on the North Side~~ (done)
 5. ~~Buying a $1.5M+ home in Lincoln Park or Winnetka: jumbo financing step by step~~ (done, published October 2026)
-6. Bank-statement loans for Chicago business owners: qualifying without W-2s
+6. ~~Bank-statement loans for Chicago business owners: qualifying without W-2s~~ (done, published October 2026)
 7. Self-employed and buying in Chicago: how lenders read your tax returns
 8. 2–4 unit & house-hacking loans on Chicago's North Side
 9. First-time buyer in Wrigleyville: down payment, taxes, and what to budget
