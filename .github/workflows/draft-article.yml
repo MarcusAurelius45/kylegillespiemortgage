@@ -48,7 +48,7 @@ jobs:
             "Article backlog" section, following every rule in "Non-negotiable
             compliance rules", "Voice and structure for articles", and the
             "When adding an article" checklist. Hard rules: never use the word "can";
-            no em dashes; 850 to 1,100 words of article text; a Sources section;
+            no em dashes; 850 to 1,100 words of article text; a numbered Sources list with an in-text citation like [1] after every factual claim (see rule 3 in CLAUDE.md);
             both approved legal blocks (Block A and Block B) copied verbatim from
             CLAUDE.md in the positions it specifies. Use the file named under
             "STRUCTURAL TEMPLATE" in CLAUDE.md as the exact structural template
@@ -88,6 +88,10 @@ jobs:
             echo "Checking $f"
             body=$(python3 -c "import re,sys,html; s=open(sys.argv[1]).read(); m=re.search(r'</h1>(.*?)<h2>Sources</h2>',s,re.S); t=m.group(1) if m else ''; t=re.sub(r'<script.*?</script>','',t,flags=re.S); t=re.sub(r'<[^>]+>',' ',t); print(html.unescape(t))" "$f")
             if ! grep -q '<h2>Sources</h2>' "$f"; then echo "::error::$f is missing the <h2>Sources</h2> section."; fail=1; fi
+            cites=$( (grep -o 'href="#src-[0-9]*"' "$f" || true) | wc -l)
+            echo "In-text citations: $cites"
+            if [ "$cites" -lt 5 ]; then echo "::error::$f has $cites in-text citations; compliance needs every factual claim cited (minimum 5)."; fail=1; fi
+            for id in $(grep -o 'id="src-[0-9]*"' "$f" | grep -o '[0-9]*'); do grep -q "href=\"#src-$id\"" "$f" || { echo "::error::$f lists source $id but never cites it."; fail=1; }; done
             for must in "Equal Housing Lender." "All information provided in this publication is for informational and educational purposes only" "No mortgage loan applications for properties located in New York will be accepted through this site" "OriginPoint LLC, NMLS #2185899. Operating in the state of California as OriginPoint Mortgage LLC"; do
               grep -qF "$must" "$f" || { echo "::error::$f is missing approved legal block text: $must"; fail=1; }
             done
