@@ -48,13 +48,13 @@ jobs:
             "Article backlog" section, following every rule in "Non-negotiable
             compliance rules", "Voice and structure for articles", and the
             "When adding an article" checklist. Hard rules: never use the word "can";
-            no em dashes; 850 to 1,100 words of article text; a numbered Sources list with an in-text citation like [1] after every factual claim (see rule 3 in CLAUDE.md);
-            both approved legal blocks (Block A and Block B) copied verbatim from
-            CLAUDE.md in the positions it specifies. Use the file named under
+            no em dashes; 850 to 1,000 words of article text; an annotated References section (rule 3 in CLAUDE.md);
+            the approved legal block copied verbatim from CLAUDE.md as the last
+            content on the page; always "NMLS #" with the number, never spelled out. Use the file named under
             "STRUCTURAL TEMPLATE" in CLAUDE.md as the exact structural template
             (head metadata, header, byline, date line, body, Frequently Asked
-            Questions, legal Block A, contact block, Sources section, legal
-            Block B, footer; no CTA block). Create the new article file inside the guides/
+            Questions, contact block, References, legal block, footer; no CTA
+            block). Create the new article file inside the guides/
             directory. Update llms.txt, sitemap.xml, index.html, and guides/index.html per the
             checklist, and mark the article done in the CLAUDE.md backlog.
             Also write the article's title as a single plain-text line into a new
@@ -86,13 +86,13 @@ jobs:
           fail=0
           for f in $new; do
             echo "Checking $f"
-            body=$(python3 -c "import re,sys,html; s=open(sys.argv[1]).read(); m=re.search(r'</h1>(.*?)<h2>Sources</h2>',s,re.S); t=m.group(1) if m else ''; t=re.sub(r'<script.*?</script>','',t,flags=re.S); t=re.sub(r'<[^>]+>',' ',t); print(html.unescape(t))" "$f")
-            if ! grep -q '<h2>Sources</h2>' "$f"; then echo "::error::$f is missing the <h2>Sources</h2> section."; fail=1; fi
-            cites=$( (grep -o 'href="#src-[0-9]*"' "$f" || true) | wc -l)
-            echo "In-text citations: $cites"
-            if [ "$cites" -lt 5 ]; then echo "::error::$f has $cites in-text citations; compliance needs every factual claim cited (minimum 5)."; fail=1; fi
-            for id in $(grep -o 'id="src-[0-9]*"' "$f" | grep -o '[0-9]*'); do grep -q "href=\"#src-$id\"" "$f" || { echo "::error::$f lists source $id but never cites it."; fail=1; }; done
-            for must in "Equal Housing Lender." "All information provided in this publication is for informational and educational purposes only" "No mortgage loan applications for properties located in New York will be accepted through this site" "OriginPoint LLC, NMLS #2185899. Operating in the state of California as OriginPoint Mortgage LLC"; do
+            body=$(python3 -c "import re,sys,html; s=open(sys.argv[1]).read(); m=re.search(r'</h1>(.*?)<h2>References</h2>',s,re.S); t=m.group(1) if m else ''; t=re.sub(r'<script.*?</script>','',t,flags=re.S); t=re.sub(r'<[^>]+>',' ',t); print(html.unescape(t))" "$f")
+            if ! grep -q '<h2>References</h2>' "$f"; then echo "::error::$f is missing the <h2>References</h2> section."; fail=1; fi
+            refs=$(python3 -c "import re,sys; s=open(sys.argv[1]).read(); m=re.search(r'<h2>References</h2>(.*?)</ul>',s,re.S); print(len(re.findall(r'<li>',m.group(1))) if m else 0)" "$f")
+            echo "References listed: $refs"
+            if [ "$refs" -lt 3 ]; then echo "::error::$f lists $refs references; compliance needs at least 3."; fail=1; fi
+            if grep -q 'Nationwide Multistate Licensing System' "$f"; then echo "::error::$f spells out the NMLS name; compliance wants NMLS # only."; fail=1; fi
+            for must in "Information provided is for educational purposes only" "OriginPoint does not provide tax advice" "All information provided in this publication is for informational and educational purposes only" "OriginPoint, LLC. NMLS #: 2185899" "Equal Housing Lender. Conditions may apply."; do
               grep -qF "$must" "$f" || { echo "::error::$f is missing approved legal block text: $must"; fail=1; }
             done
             hits=$(echo "$body" | grep -noiE "\bcan\b|\bcan't\b|\bcannot\b" || true)
