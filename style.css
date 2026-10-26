@@ -67,7 +67,7 @@ footer.site a{color:var(--muted)}
 .guide-list .meta{display:block;color:var(--muted);font-size:.85rem;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
 
 .sources li{margin:.3rem 0;font-size:.92rem}
-.sources a{word-break:break-all}
+.sources a{overflow-wrap:anywhere}
 
 /* compliance additions, October 2026 */
 .legal{color:var(--muted);font-size:.82rem;border-top:1px solid var(--rule);margin-top:2rem;padding-top:.8rem}
