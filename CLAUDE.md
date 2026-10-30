@@ -65,7 +65,7 @@ PRIORITY ORDER (overrides the numbering below; set October 2026 from Bing AI cit
 9. First-time buyer in Wrigleyville: down payment, taxes, and what to budget
 10. Foreign national mortgages in Chicago: buying without a Social Security number
 
-12. Non-warrantable condos in Lakeview and Lincoln Park: the buildings, the triggers, and the financing
+12. ~~Non-warrantable condos in Lakeview and Lincoln Park: the buildings, the triggers, and the financing~~ (done, published October 2026 as guides/lakeview-lincoln-park-non-warrantable-condos)
 13. Jumbo financing in Lincoln Park, Bucktown, and North Center: what $1M+ buyers should know
 14. Buying a 2-flat in Logan Square or Avondale: house-hacking financing explained
 15. ~~Condo financing in River North and Streeterville: high-rise buildings and warrantability~~ (done, published October 2026 as guides/river-north-streeterville-condo-financing-warrantability)
