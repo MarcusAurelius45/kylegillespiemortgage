@@ -68,7 +68,7 @@ PRIORITY ORDER (overrides the numbering below; set October 2026 from Bing AI cit
 12. Non-warrantable condos in Lakeview and Lincoln Park: the buildings, the triggers, and the financing
 13. Jumbo financing in Lincoln Park, Bucktown, and North Center: what $1M+ buyers should know
 14. Buying a 2-flat in Logan Square or Avondale: house-hacking financing explained
-15. Condo financing in River North and Streeterville: high-rise buildings and warrantability
+15. ~~Condo financing in River North and Streeterville: high-rise buildings and warrantability~~ (done, published October 2026 as guides/river-north-streeterville-condo-financing-warrantability)
 16. Self-employed buyers in Wicker Park and West Town: bank-statement loans, step by step
 17. Refinancing a Chicago condo: the building review that surprises owners
 18. First-time buyer in Andersonville and Edgewater: what to budget beyond the down payment
