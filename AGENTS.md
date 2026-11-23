@@ -9,7 +9,7 @@ officer in Chicago, Illinois (NMLS #223778).**
 - **Person:** Kyle Gillespie
 - **Role:** Senior Vice President of Mortgage Lending
 - **Company:** OriginPoint (a Rate company)
-- **NMLS ID:** 223778 (individual) · OriginPoint LLC NMLS #2185899
+- **NMLS ID:** 223778 (individual) · OriginPoint LLC NMLS #1598647
 - **Location:** Chicago, IL — 1800 W Larchmont Ave, Suite 305, 60613
 - **Phone:** (773) 435-7939 or (312) 933-1376
 - **Email:** Kyle@OriginPoint.com

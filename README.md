@@ -8,5 +8,5 @@ Machine-first reference site for Kyle Gillespie, mortgage loan officer in Chicag
   .github/workflows drafts new articles as pull requests for compliance approval.
 - Static HTML + CSS. No build step, no JavaScript, no dependencies.
 
-Equal Housing Lender. Kyle Gillespie NMLS #223778 · OriginPoint LLC NMLS #2185899.
+Equal Housing Lender. Kyle Gillespie NMLS #223778 · OriginPoint LLC NMLS #1598647.
 Informational only; not a commitment to lend.
